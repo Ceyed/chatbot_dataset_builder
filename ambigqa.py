@@ -11,12 +11,12 @@ import log
 init(autoreset=True)
 
 
-def next_training_data(original_file_address):
+def next_training_data(file_address):
     """
     returning next training data in original file
     """
 
-    with open(original_file_address, "r", encoding='utf-8-sig') as file:
+    with open(file_address, "r", encoding='utf-8-sig') as file:
         while True:
             element = file.readline()
             if not element:
@@ -24,15 +24,17 @@ def next_training_data(original_file_address):
             yield json.loads(element)
 
 
-def dev_light():
+def dev_light_and_train_light(file_address):
     """
     Read data and save them in `dataset` file in needed format
-    File: Training_data/dev_light.json
+    Files: ./Training_data/dev_light.json
+                          /train_light.json
     """
 
+    from pprint import pprint
+
     new_data_for_dataset = []
-    original_file_address = "./Training_data/dev_light.json"
-    for data in next_training_data(original_file_address):
+    for data in next_training_data(file_address):
         for index, datum in enumerate(data):
             try:
                 # * Log
@@ -62,10 +64,11 @@ def dev_light():
                     log.part_log("Done", end=True)
             except Exception as error:
                 log.error_log(f"In datum #{index+1} we have error")
-                log.error_logfile(f"Running 'dev_light - Datum #{index}'", str(error))
+                log.error_logfile(f"Running 'dev_light_and_train_light ({file_address}) \
+                    - Datum #{index}'", str(error))
 
     print()
-    log.log(f"Got {len(new_data_for_dataset)} Q&As from ambigqa.dev_light")
+    log.log(f"Got {len(new_data_for_dataset)} Q&As from ambigqa.{file_address.split('/')[-1][:-5]}")
     print()
 
     return new_data_for_dataset

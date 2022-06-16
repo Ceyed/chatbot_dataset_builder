@@ -1,7 +1,7 @@
 import csv
 
 import log
-from ambigqa import dev_light
+from ambigqa import dev_light_and_train_light
 
 
 def save_to_dataset(new_data_for_dataset):
@@ -27,8 +27,23 @@ def main():
     Main function of program
     """
 
-    new_data_for_dataset = dev_light()
+    # new_data_for_dataset = dev_light()
+    # save_to_dataset(new_data_for_dataset)
+
+    ambigqa_file_addresses = [
+        "./Training_data/dev_light.json",
+        "./Training_data/train_light.json"
+    ]
+
+    new_data_for_dataset = []
+    for file_address in ambigqa_file_addresses:
+        new_data_for_dataset.extend(dev_light_and_train_light(file_address))
     save_to_dataset(new_data_for_dataset)
+
+
+
+
+
 
 
 if __name__ == "__main__":
