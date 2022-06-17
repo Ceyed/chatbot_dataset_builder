@@ -58,7 +58,7 @@ def dev_light_and_train_light(file_address):
                     log.part_log('Done', end=True)
             except Exception as error:
                 log.error_log(f'In datum #{index+1} we have error')
-                log.error_logfile(f"Running 'dev_light_and_train_light ({file_address}) \
+                log.error_logfile(f"Running 'dev_light_and_train_light ({file_address})' \
                     - Datum #{index}'", str(error))
 
     print()

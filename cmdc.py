@@ -34,7 +34,7 @@ def remove_unneeded_char(sentence):
     return new_sentence.strip()
 
 
-def cmdc(file_address):
+def movie_lines(file_address):
     """
     Read data and save them in `dataset` file in needed format
     Files: ./Training_data/movie_lines.txt
@@ -61,7 +61,7 @@ def cmdc(file_address):
                 log.part_log('Done', end=True)
         except Exception as error:
             log.error_log(f'In row #{index+1} we have error')
-            log.error_logfile(f"Running 'cmdc ({file_address}) - Row #{index}'", str(error))
+            log.error_logfile(f"Running 'movie_lines ({file_address}) - Row #{index}'", str(error))
 
     print()
     log.log(f"Got {len(new_data_for_dataset)} dialogues from cmdc.{file_address.split('/')[-1].split('.')[0]}")

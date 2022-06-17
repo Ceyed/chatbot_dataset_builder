@@ -2,7 +2,8 @@ import csv
 
 import log
 from ambigqa import dev_light_and_train_light
-from cmdc import cmdc
+from cmdc import movie_lines
+from udc import dialogueText
 
 
 def save_to_dataset(new_data_for_dataset):
@@ -30,23 +31,18 @@ def main():
 
     new_data_for_dataset = []
 
-    file_addresses = {}
-    file_addresses["ambigqa"] = [
-        "./Training_data/dev_light.json",
-        "./Training_data/train_light.json"
-    ]
-    file_addresses["cmdc"] = [
-        "./Training_data/movie_lines.txt",
-    ]
-
     # ? ambigqa
-    for file_address in file_addresses["ambigqa"]:
-        new_data_for_dataset.extend(dev_light_and_train_light(file_address))
+    dev_light_and_train_light("./Training_data/dev_light.json")
+    dev_light_and_train_light("./Training_data/train_light.json")
 
 
     # ? C.M.D.C
-    for file_address in file_addresses["cmdc"]:
-        new_data_for_dataset.extend(cmdc(file_address))
+    new_data_for_dataset.extend(movie_lines("./Training_data/movie_lines.txt"))
+
+
+    # ? Ubuntu-dialogue-corpus
+    new_data_for_dataset.extend(dialogueText("./Training_data/dialogueText.csv"))
+
 
     # ? Save data to dataset
     save_to_dataset(new_data_for_dataset)
