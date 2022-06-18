@@ -20,11 +20,12 @@ def next_training_data(file_address):
             yield json.loads(element)
 
 
-def dev_light_and_train_light(file_address):
+def dev_light_and_train_light_and_train(file_address):
     """
     Read data and save them in `dataset` file in needed format
     Files: ./Training_data/dev_light.json
                           /train_light.json
+                          /train.json
     """
 
     new_data_for_dataset = []

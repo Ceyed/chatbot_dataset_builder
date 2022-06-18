@@ -1,5 +1,8 @@
 # Chatbot Dataset Builder
-I needed dataset for my new chatbot. So I used other datasets's Q&amp;As, prepared and saved them in a custom format
+I needed dataset for my new chatbot. So I used other datasets's Q&amp;As and dialogues, prepared and saved them in a custom format <br />
+Q&amp;A and Dialogue's format in each row in dataset: <br />
+In single answer case: "question", "answer" <br />
+In multiple answer case: "question", "answer - answer - answer" <br />
 
 <br /><br />
 
@@ -16,7 +19,7 @@ List of training data for convert into dataset
 - [x] Training_data/nqopen-dev.json
 - [x] Training_data/nqopen-test.json
 - [x] Training_data/nqopen-train.json
-- [ ] Training_data/train.json
+- [x] Training_data/train.json
 
 ### Cornell Movie-Dialog Corpus ~ CMDC (https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html)
 - [x] Training_data/movie_lines.txt
