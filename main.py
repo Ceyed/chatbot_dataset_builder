@@ -1,7 +1,7 @@
 import csv
 
 import log
-from ambigqa import dev_light_and_train_light
+from ambigqa import dev_light_and_train_light, nqopen_dev
 from cmdc import movie_lines
 from udc import dialogueText
 
@@ -32,8 +32,9 @@ def main():
     new_data_for_dataset = []
 
     # ? ambigqa
-    dev_light_and_train_light("./Training_data/dev_light.json")
-    dev_light_and_train_light("./Training_data/train_light.json")
+    new_data_for_dataset.extend(dev_light_and_train_light("./Training_data/dev_light.json"))
+    new_data_for_dataset.extend(dev_light_and_train_light("./Training_data/train_light.json"))
+    new_data_for_dataset.extend(nqopen_dev("./Training_data/nqopen-dev.json"))
 
 
     # ? C.M.D.C

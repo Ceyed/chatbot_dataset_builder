@@ -66,3 +66,36 @@ def dev_light_and_train_light(file_address):
     print()
 
     return new_data_for_dataset
+
+
+def nqopen_dev(file_address):
+    """
+    Read data and save them in `dataset` file in needed format
+    File: ./Training_data/nqopen-dev.json
+    """
+
+    new_data_for_dataset = []
+    for data in next_training_data(file_address):
+        for index, datum in enumerate(data):
+            try:
+                # * Log
+                if (index+1) % 100 == 1:
+                    log.part_log(f"Data {index+1} - {index+100 if (len(data) > (index+100)) else len(data)}... ")
+
+                question = datum["question"]
+                for answer in datum["answer"]:
+                    new_data_for_dataset.append([question, answer])
+
+                # * Log
+                if ((index+1) % 100 == 0) or (len(data) == (index+1)):
+                    log.part_log('Done', end=True)
+            except Exception as error:
+                log.error_log(f'In datum #{index+1} we have error')
+                log.error_logfile(f"Running 'nqopen_dev ({file_address})' \
+                    - Datum #{index}'", str(error))
+
+    print()
+    log.log(f"Got {len(new_data_for_dataset)} Q&As from ambigqa.{file_address.split('/')[-1].split('.')[0]}")
+    print()
+
+    return new_data_for_dataset
