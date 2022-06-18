@@ -76,6 +76,7 @@ def nqopen_dev(file_address):
     Read data and save them in `dataset` file in needed format
     Files: ./Training_data/nqopen-dev.json
                           /nqopen-test.json
+                          /nqopen-train.json
     """
 
     new_data_for_dataset = []

@@ -15,7 +15,7 @@ List of training data for convert into dataset
 - [x] Training_data/dev_light.json
 - [x] Training_data/nqopen-dev.json
 - [x] Training_data/nqopen-test.json
-- [ ] Training_data/nqopen-train.json
+- [x] Training_data/nqopen-train.json
 - [ ] Training_data/train.json
 
 ### Cornell Movie-Dialog Corpus ~ CMDC (https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html)
