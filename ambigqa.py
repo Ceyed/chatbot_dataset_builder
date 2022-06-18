@@ -20,6 +20,19 @@ def next_training_data(file_address):
             yield json.loads(element)
 
 
+def remove_unneeded_char(sentence):
+    """
+    Remove unnecessary characters from sentence
+    """
+
+    unneeded_characters = ['+', '$', '"', '<u>', '<u/>', '<u />', '<b>', '<b/>', '<b />', '\n']
+    new_sentence = sentence
+    for char in sentence:
+        if char in unneeded_characters:
+            new_sentence = new_sentence.replace(char, "")
+    return new_sentence.strip()
+
+
 def dev_light_and_train_light_and_train(file_address):
     """
     Read data and save them in `dataset` file in needed format
@@ -47,7 +60,7 @@ def dev_light_and_train_light_and_train(file_address):
                                     question = pair['question']
                                 answer += (ans + " - ")
                             answer = answer[:-3]
-                            new_data_for_dataset.append([question, answer])
+                            new_data_for_dataset.append([remove_unneeded_char(question), "|SEP|" + remove_unneeded_char(answer)])
                     else:
                         if '|' in datum['question']:
                             question = datum['question'].split('|')[0]
@@ -55,7 +68,7 @@ def dev_light_and_train_light_and_train(file_address):
                             question = datum['question']
 
                         for answer in item['answer']:
-                            new_data_for_dataset.append([question, answer])
+                            new_data_for_dataset.append([remove_unneeded_char(question), "|SEP|" + remove_unneeded_char(answer)])
 
                 # * Log
                 if ((index+1) % 100 == 0) or (len(data) == (index+1)):
@@ -94,7 +107,7 @@ def nqopen_dev(file_address):
                     answer += (ans + " - ")
                 answer = answer[:-3]
 
-                new_data_for_dataset.append([question, answer])
+                new_data_for_dataset.append([remove_unneeded_char(question), "|SEP|" + remove_unneeded_char(answer)])
                 # * Log
                 if ((index+1) % 100 == 0) or (len(data) == (index+1)):
                     log.part_log('Done', end=True)

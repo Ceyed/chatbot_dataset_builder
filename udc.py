@@ -23,7 +23,7 @@ def remove_unneeded_char(sentence):
     Remove unnecessary characters from sentence
     """
 
-    unneeded_characters = ['+', '$', '"', '<u>']
+    unneeded_characters = ['+', '$', '"', '<u>', '<u/>', '<u />', '<b>', '<b/>', '<b />', '\n']
     new_sentence = sentence
     for char in sentence:
         if char in unneeded_characters:
@@ -49,7 +49,7 @@ def dialogue_text(file_address):
             if index % 2 == 0:
                 first_dialogue = remove_unneeded_char(' '.join(data.split(",")[-1]))
             else:
-                new_data_for_dataset.append([first_dialogue, remove_unneeded_char(' '.join(data.split(",")[-1]))])
+                new_data_for_dataset.append([first_dialogue, "|SEP|" + remove_unneeded_char(' '.join(data.split(",")[-1]))])
 
             # * Log
             if ((index+1) % 1000 == 0) or (file_address_size == (index+1)):

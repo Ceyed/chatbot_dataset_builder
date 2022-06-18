@@ -10,6 +10,7 @@ In multiple answer case: "question", "answer - answer - answer" <br />
 
 ### General
 - [x] pylint all files
+- [ ] An error counter, count errors in all files and at the end if there are any errors, alarm user
 
 List of training data for convert into dataset
 

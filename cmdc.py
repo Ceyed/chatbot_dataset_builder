@@ -25,7 +25,7 @@ def remove_unneeded_char(sentence):
     Remove unnecessary characters from sentence
     """
 
-    unneeded_characters = ['+', '$', '"', '<u>']
+    unneeded_characters = ['+', '$', '"', '<u>', '<u/>', '<u />', '<b>', '<b/>', '<b />', '\n']
     new_sentence = sentence
     for char in sentence:
         if char in unneeded_characters:
@@ -43,7 +43,6 @@ def movie_lines(file_address):
     new_data_for_dataset = []
     file_address_size = len(open(file_address, 'r', encoding='utf-8-sig').readlines())
 
-    first_person = ""
     for index, data in enumerate(next_training_data(file_address)):
         try:
             # * Log
@@ -53,7 +52,7 @@ def movie_lines(file_address):
             if index % 2 == 0:
                 first_person = remove_unneeded_char(' '.join(data.split()[8:]))
             else:
-                new_data_for_dataset.append([first_person, remove_unneeded_char(' '.join(data.split()[8:]))])
+                new_data_for_dataset.append([first_person, "|SEP|" + remove_unneeded_char(' '.join(data.split()[8:]))])
 
             # * Log
             if ((index+1) % 1000 == 0) or (file_address_size == (index+1)):
