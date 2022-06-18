@@ -35,6 +35,7 @@ def main():
     new_data_for_dataset.extend(dev_light_and_train_light("./Training_data/dev_light.json"))
     new_data_for_dataset.extend(dev_light_and_train_light("./Training_data/train_light.json"))
     new_data_for_dataset.extend(nqopen_dev("./Training_data/nqopen-dev.json"))
+    new_data_for_dataset.extend(nqopen_dev("./Training_data/nqopen-test.json"))
 
 
     # ? C.M.D.C

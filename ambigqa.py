@@ -38,12 +38,15 @@ def dev_light_and_train_light(file_address):
                 for item in datum['annotations']:
                     if not 'answer' in item:
                         for pair in item['qaPairs']:
-                            for answer in pair['answer']:
+                            answer = ""
+                            for ans in pair['answer']:
                                 if '|' in pair['question']:
                                     question = pair['question'].split('|')[0]
                                 else:
                                     question = pair['question']
-                                new_data_for_dataset.append([question, answer])
+                                answer += (ans + " - ")
+                            answer = answer[:-3]
+                            new_data_for_dataset.append([question, answer])
                     else:
                         if '|' in datum['question']:
                             question = datum['question'].split('|')[0]
@@ -71,7 +74,8 @@ def dev_light_and_train_light(file_address):
 def nqopen_dev(file_address):
     """
     Read data and save them in `dataset` file in needed format
-    File: ./Training_data/nqopen-dev.json
+    Files: ./Training_data/nqopen-dev.json
+                          /nqopen-test.json
     """
 
     new_data_for_dataset = []
@@ -83,9 +87,12 @@ def nqopen_dev(file_address):
                     log.part_log(f"Data {index+1} - {index+100 if (len(data) > (index+100)) else len(data)}... ")
 
                 question = datum["question"]
-                for answer in datum["answer"]:
-                    new_data_for_dataset.append([question, answer])
+                answer = ""
+                for ans in datum["answer"]:
+                    answer += (ans + " - ")
+                answer = answer[:-3]
 
+                new_data_for_dataset.append([question, answer])
                 # * Log
                 if ((index+1) % 100 == 0) or (len(data) == (index+1)):
                     log.part_log('Done', end=True)
