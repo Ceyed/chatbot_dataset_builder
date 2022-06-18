@@ -2,8 +2,6 @@
 Functions for processing 'Ubuntu-dialogue-corpus' datasets
 """
 
-import json
-
 import log
 
 
@@ -33,16 +31,15 @@ def remove_unneeded_char(sentence):
     return new_sentence.strip()
 
 
-def dialogueText(file_address):
+def dialogue_text(file_address):
     """
     Read data and save them in `dataset` file in needed format
     File: ./Training_data/dialogueText.csv
     """
 
     new_data_for_dataset = []
-    file_address_size = len(open(file_address).readlines())
+    file_address_size = len(open(file_address, 'r', encoding='utf-8-sig').readlines())
 
-    first_person = ""
     for index, data in enumerate(next_training_data(file_address)):
         try:
             # * Log
@@ -59,7 +56,7 @@ def dialogueText(file_address):
                 log.part_log('Done', end=True)
         except Exception as error:
             log.error_log(f'In row #{index+1} we have error')
-            log.error_logfile(f"Running 'dialogueText ({file_address}) - Row #{index}'", str(error))
+            log.error_logfile(f"Running 'dialogue_text ({file_address}) - Row #{index}'", str(error))
 
     print()
     log.log(f"Got {len(new_data_for_dataset)} dialogues from udc.{file_address.split('/')[-1].split('.')[0]}")

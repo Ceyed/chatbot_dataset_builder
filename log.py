@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from colorama import Back, Fore, Style, init
+from colorama import Fore, Style, init
 
 init(autoreset=True)
 # Fore: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
@@ -31,8 +31,8 @@ def part_log(log_text, end = False, error = False):
     # elif log_text == "Error":
     #     log_text = u'\u2717'
 
-    if end == True:
-        if error == True:
+    if end is True:
+        if error is True:
             print(Fore.RED + Style.BRIGHT + log_text)
         else:
             print(Fore.GREEN + Style.BRIGHT + log_text)

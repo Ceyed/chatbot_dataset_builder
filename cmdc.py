@@ -3,7 +3,6 @@ Functions for processing 'Cornell Movie-Dialog Corpus' datasets
 """
 
 import codecs
-import json
 
 import log
 
@@ -42,7 +41,7 @@ def movie_lines(file_address):
     """
 
     new_data_for_dataset = []
-    file_address_size = len(open(file_address).readlines())
+    file_address_size = len(open(file_address, 'r', encoding='utf-8-sig').readlines())
 
     first_person = ""
     for index, data in enumerate(next_training_data(file_address)):

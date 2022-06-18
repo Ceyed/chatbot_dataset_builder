@@ -9,7 +9,7 @@ In multiple answer case: "question", "answer - answer - answer" <br />
 # TODO
 
 ### General
-- [ ] pylint all files
+- [x] pylint all files
 
 List of training data for convert into dataset
 
